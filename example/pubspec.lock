@@ -90,10 +90,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_map_location_marker
-      sha256: "5c9ee8d96ea6610efea497d366af75daebe82ab2794e40e883c01b679a062fc1"
+      sha256: c65b31e0759ca36326318a281a76dfb13c782d438b5cf622b11059b752ced1e2
       url: "https://pub.dev"
     source: hosted
-    version: "5.2.0+2"
+    version: "5.3.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter

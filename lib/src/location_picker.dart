@@ -595,11 +595,7 @@ class _FlutterLocationPickerState extends State<FlutterLocationPicker>
       mapController: _mapController,
       children: [
         TileLayer(
-          tileProvider: NetworkNoRetryTileProvider(
-            headers: {'User-Agent': 'flutter_map (unknown)',
-              'Cross-Origin-Resource-Policy': 'cross-origin'
-            },
-          ),
+          tileProvider: CustomTileProvider(widget.urlTemplate),
           urlTemplate: widget.urlTemplate,
           subdomains: const ['a', 'b', 'c'],
           backgroundColor:
@@ -675,6 +671,23 @@ class _FlutterLocationPickerState extends State<FlutterLocationPicker>
           if (widget.showSelectLocationButton) _buildSelectButton()
         ],
       ),
+    );
+  }
+}
+
+class CustomTileProvider extends TileProvider {
+  final String urlTemplate;
+
+  CustomTileProvider(this.urlTemplate);
+
+  @override
+  ImageProvider<Object> getImage(Coords coords, TileLayer options) {
+    return NetworkImage(
+      urlTemplate
+          .replaceAll('{z}', coords.z.toString())
+          .replaceAll('{x}', coords.x.toString())
+          .replaceAll('{y}', coords.y.toString()),
+      headers: {'Cross-Origin-Resource-Policy': 'cross-origin'},
     );
   }
 }
