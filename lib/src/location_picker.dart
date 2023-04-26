@@ -595,6 +595,11 @@ class _FlutterLocationPickerState extends State<FlutterLocationPicker>
       mapController: _mapController,
       children: [
         TileLayer(
+          tileProvider: NetworkNoRetryTileProvider(
+            headers: {'User-Agent': 'flutter_map (unknown)',
+              'Cross-Origin-Resource-Policy': 'cross-origin'
+            },
+          ),
           urlTemplate: widget.urlTemplate,
           subdomains: const ['a', 'b', 'c'],
           backgroundColor:
