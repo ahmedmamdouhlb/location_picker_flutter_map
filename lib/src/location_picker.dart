@@ -688,6 +688,7 @@ class CustomTileProvider extends TileProvider {
           .replaceAll('{x}', coords.x.toString())
           .replaceAll('{y}', coords.y.toString()),
       headers: {'Access-Control-Allow-Origin': '*',
+        'Referrer-Policy': 'strict-origin-when-cross-origin'
       },
     );
   }
