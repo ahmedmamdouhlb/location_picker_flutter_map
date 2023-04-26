@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -595,7 +596,7 @@ class _FlutterLocationPickerState extends State<FlutterLocationPicker>
       mapController: _mapController,
       children: [
         TileLayer(
-          tileProvider: CustomTileProvider(widget.urlTemplate),
+          tileProvider: CustomTileProvider('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
           urlTemplate: widget.urlTemplate,
           subdomains: const ['a', 'b', 'c'],
           backgroundColor:
@@ -683,11 +684,12 @@ class CustomTileProvider extends TileProvider {
   @override
   ImageProvider<Object> getImage(Coords coords, TileLayer options) {
     return NetworkImage(
-      urlTemplate
+      getTileUrl(coords, options)
           .replaceAll('{z}', coords.z.toString())
           .replaceAll('{x}', coords.x.toString())
           .replaceAll('{y}', coords.y.toString()),
-      headers: {'Cross-Origin-Resource-Policy': 'cross-origin'},
+      headers: {'Cross-Origin-Resource-Policy': 'cross-origin',
+      },
     );
   }
 }
