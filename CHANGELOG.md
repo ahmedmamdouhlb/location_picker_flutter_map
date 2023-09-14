@@ -1,3 +1,18 @@
+## 1.2.2
+
+* SetLocationError handling
+* Support more customizations for Select Location button Text
+* Remove loading when the current location is changed.
+* Remove SafeArea from map
+* Added maxBounds
+* Update dependencies
+
+## 1.2.1
+
+* Added OSM copyrights Badge
+* Support more customizations for Select Location button and Search bar
+* Update dependencies
+
 ## 1.2.0
 
 * Add Current Location Pointer
